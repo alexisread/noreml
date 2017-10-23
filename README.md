@@ -17,7 +17,7 @@ Node-red can already run cross-platform on non-mobile devices thanks to Electron
 Only Android is tested here at present.
 
 
-Links:
+Links:<br/>
 [Node-Red](https://nodered.org/)<br/>
 [JXCore](https://github.com/jxcore/jxcore)<br/>
 [Binary JXCore runtimes](https://github.com/jxcore/jxcore-release)<br/>
@@ -48,78 +48,45 @@ and open a webview which directs to http:localhost:1880/red/ui (the dashboard ad
 
 ie. It appears to the user that they click on the app, and it runs as per any other app that they use.
 
-
-
+<br/><br/><br/>
 
 Build notes - these are very rough and outline the changes I had to make to get this to run correctly.
 JXCore is based on NodeJS 0.1.0, and as such has no ES6 functionality. We can use polyfils or ES5 versions where possible:
 
 
-https://github.com/jxcore/jxcore/issues/650
-
-https://www.npmjs.com/package/jxc#
-
-npm install -g android-sdk https://www.npmjs.com/package/android-sdk/tutorial
-
-https://www.npmjs.com/package/update-android
-
-npm install -g cordova
-
-cordova create jtest com.alexis.jtest Jtest
-
-install jxcore for windows (V8 engine for 64bit) https://github.com/jxcore/jxcore-release
-
+https://github.com/jxcore/jxcore/issues/650<br/>
+https://www.npmjs.com/package/jxc#<br/>
+npm install -g android-sdk https://www.npmjs.com/package/android-sdk/tutorial<br/>
+https://www.npmjs.com/package/update-android<br/>
+npm install -g cordova<br/>
+cordova create noreml com.alexis.noreml noreml<br/>
+install jxcore for windows (V8 engine for 64bit) https://github.com/jxcore/jxcore-release<br/>
 npm install -g jxc
-
 in cordova folder: cordova platform add android
-
 in cordova folder: jxc install 0.1.0 --sample express_sample
-
 jx io.jxcore.node.jx
-
 cordova plugins add io.jxcore.node/
-
 then: cordova run
-
-node_modules not found => D:\Apps\jtest\www\jxcore\install_modules.md:
-
+node_modules not found => \noreml\www\jxcore\install_modules.md:
 jx install --autoremove ".*,*.md,*.MD"
-
 https://github.com/jxcore/jxcore/issues/874 - this is a jxcore version issue
-
-from the package.json: D:\Apps\jtest\www\jxcore => npm install express --save
-
+from the package.json: \noreml\www\jxcore => npm install express --save
 https://www.sitepoint.com/how-to-run-node-js-with-express-on-mobile-devices/
-
 C:\Windows\System32\telnet.exe localhost 5584
-
 C:\Users\User\.emulator_console_auth_token => auth dCAc+BaWXu3r+r21
-
 redir add tcp:8080:3000
 
+<br/><br/><br/>
 
-
-
-npm install node-red-contrib-dnr --save
-
-D:\Apps\jtest\www\jxcore\app.js => paste from D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js then line 116:
-
-// We put the settings file next to this file
-
-settingsFile = "settings.js";
-
-D:\Apps\jtest\www\jxcore\node_modules\node-red\red\red.js - function checkVersion(userSettings)
-
-mqtt.min.js => use mqtt.js
-
-jsonata => use es5 version
-
-	Execution failed for task ':mergeDebugAssets'.
-
-	> [www/jxcore/node_modules/tar-pack/test/fixtures/packed.tar] 
-
-	=> remove D:\Apps\jtest\www\jxcore\node_modules\tar-pack\test\fixtures\packed.tar as it's considered a dupe vs packed.tar.gz
-
-require('es5-shim'); D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js
-
-require('es6-shim'); D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js
+npm install node-red-contrib-dnr --save<br/>
+D:\Apps\jtest\www\jxcore\app.js => paste from D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js then line 116:<br/>
+// We put the settings file next to this file<br/>
+settingsFile = "settings.js";<br/>
+D:\Apps\jtest\www\jxcore\node_modules\node-red\red\red.js - function checkVersion(userSettings)<br/>
+mqtt.min.js => use mqtt.js<br/>
+jsonata => use es5 version<br/>
+	Execution failed for task ':mergeDebugAssets'.<br/>
+	> [www/jxcore/node_modules/tar-pack/test/fixtures/packed.tar] <br/>
+	=> remove D:\Apps\jtest\www\jxcore\node_modules\tar-pack\test\fixtures\packed.tar as it's considered a dupe vs packed.tar.gz<br/>
+require('es5-shim'); D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js<br/>
+require('es6-shim'); D:\Apps\jtest\www\jxcore\node_modules\node-red\red.js<br/>
