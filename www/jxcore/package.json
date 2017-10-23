@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "es5-shim": "^4.5.9",
+    "es6-shim": "^0.35.3",
+    "express": "^4.12.3",
+    "node-red": "*",
+    "node-red-contrib-dnr": "^3.4.16"
+  }
+}
